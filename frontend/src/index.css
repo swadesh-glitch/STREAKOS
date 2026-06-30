@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: #030303;
+  --color-panel: rgba(15, 15, 18, 0.65);
+  --color-border: rgba(255, 255, 255, 0.08);
+  
+  --color-accent: #00F294;
+  --color-accent-hover: #00D882;
+  --color-accent-muted: rgba(0, 242, 148, 0.1);
+  
+  --color-zinc-850: #1F1F23;
+  --color-zinc-900: #18181B;
+  --color-zinc-950: #09090B;
+  
+  --font-sans: "Inter", "system-ui", "sans-serif";
+  --font-display: "Plus Jakarta Sans", "system-ui", "sans-serif";
+}
+
+@utility glass-panel {
+  background: rgba(15, 15, 18, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+@utility glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    background: rgba(20, 20, 25, 0.85);
+    border-color: rgba(0, 242, 148, 0.25);
+    box-shadow: 0 0 30px rgba(0, 242, 148, 0.03);
+    transform: translateY(-2px);
+  }
+}
+
+@utility text-gradient {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #ffffff, #a1a1aa);
+}
+
+@utility text-gradient-accent {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #00F294, #34d399);
+}
+
+@utility heatmap-cell-0 {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+@utility heatmap-cell-1 {
+  background-color: rgba(0, 242, 148, 0.25);
+  border: 1px solid rgba(0, 242, 148, 0.4);
+}
+
+@utility heatmap-cell-2 {
+  background-color: rgba(0, 242, 148, 0.6);
+  border: 1px solid rgba(0, 242, 148, 0.8);
+}
+
+@utility heatmap-cell-3 {
+  background-color: #00F294;
+  box-shadow: 0 0 10px rgba(0, 242, 148, 0.4);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-zinc-100);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(0, 242, 148, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(0, 242, 148, 0.02) 0px, transparent 50%),
+      radial-gradient(at 50% 0%, rgba(9, 9, 11, 0.5) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 148, 0.3);
+}
