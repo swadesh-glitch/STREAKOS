@@ -29,11 +29,19 @@ const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, curl, Render health checks)
     if (!origin) return callback(null, true);
+    
+    // Check if origin is explicitly allowed
     if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS: origin ${origin} not allowed`));
+      return callback(null, true);
     }
+    
+    // Check if it is a Vercel deployment/preview subdomain for the streakos project
+    // e.g. https://streakos-ekkbasify-swadeshsekharswain2006-gmailcoms.projects.vercel.app
+    if (origin.startsWith('https://streakos-') && origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+    
+    callback(new Error(`CORS: origin ${origin} not allowed`));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
